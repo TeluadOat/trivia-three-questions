@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./basic-trivia.css">
+    <title>Trivia App - Know About Computer Science</title>
+</head>
+
+<body>
+
+    <div id="container">
+        <header>
+            <h1>Sample Trivia Web App</h1>
+        </header>
+        <main id="quiz-container">
+            <p id="desc">Test your knowledge on Computer Programming</p>
+            <form id="selections" action="#">
+                <label for="category"> Select category<select name="category" id="category">
+                        <option value=""></option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="rust">Rust</option>
+                    </select></label>
+                <fieldset id="difficulty">
+                    <legend>Select Difficulty Level</legend>
+                    <label for="difficulty-level-easy"><span>Easy</span><input id="difficulty-level-easy"
+                            type="checkbox"></label>
+                    <label for="difficulty-level-intermediate"><span>Intermediate</span><input type="checkbox"></label>
+                    <label for="difficulty-level-hard"><span>Hard</span><input type="checkbox"></label>
+                </fieldset>
+                <button id="start-button" name="submit">start</button>
+            </form>
+        </main>
+        <footer>
+            <span id="dev">TeluadOat</span>
+            <span></span>
+        </footer>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>
