@@ -1,3 +1,8 @@
+:root {
+    --main-color: bisque;
+    --main-color-hover: #c6b49c;
+}
+
 *,
 ::before,
 ::after {
@@ -51,6 +56,12 @@ header {
     gap: 2em;
 }
 
+input,
+label,
+select {
+    cursor: pointer;
+}
+
 #desc {
     font-size: 2em;
 }
@@ -65,12 +76,19 @@ header {
 label[for="category"]>#category {
     display: block;
     margin-top: 0.5em;
+    height: 1.5em;
+}
+
+input:hover,
+select:hover {
+    border: 1px solid bisque
 }
 
 fieldset#difficulty {
     display: flex;
     gap: 1em;
-    padding: 0.3em 0;
+    padding: 0.5em 0;
+    width: fit-content;
 }
 
 fieldset#difficulty>label {
@@ -86,17 +104,10 @@ fieldset#difficulty>label>input {
 form#selections>button {
     display: inline-block;
     text-transform: uppercase;
-    background-color: aliceblue;
     width: auto;
     padding: 0.5em;
     border-radius: 4px;
     align-self: flex-start;
-    cursor: pointer;
-    background-color: rgb(184, 185, 187);
-}
-
-form#selections>button:hover {
-    background-color: hsl(220, 2%, 60%);
 }
 
 footer {
@@ -105,6 +116,8 @@ footer {
     color: white;
     padding: 2em 3rem;
 }
+
+
 
 .flex-display {
     display: flex;
@@ -124,6 +137,7 @@ footer {
     background-color: bisque;
     padding: 0.3rem 0.6rem;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .btn:hover {

@@ -54,8 +54,10 @@ const quizContainer = document.querySelector('#quiz-container');
 const easy = document.querySelector('#difficulty-level-easy');
 
 
+
 let current = 0;
 let score = 0;
+const userAnwers = new Array(questions.length).fill(null);
 startForm.addEventListener('submit', (e) => {
     e.preventDefault();
     showQuestions();
@@ -85,6 +87,7 @@ function showQuestions() {
         input.type = 'radio';
         input.name = 'options';
         input.value = i;
+        input.checked = userAnwers[current] === i;
         const optionsText = document.createElement('span');
         optionsText.innerText = option;
         label.append(input, optionsText);
@@ -94,12 +97,30 @@ function showQuestions() {
     });
     questionContainer.classList.add('flex-display');
 
+    if (current > 0) {
+        const backButton = document.createElement('button');
+        backButton.innerText = 'Back'
+        questionForm.append(backButton);
+        backButton.classList.add('btn');
 
+        backButton.addEventListener('click', (e) => {
+            current -= 1;
+            score -= 1;
+            showQuestions();
+        })
+    }
     questionForm.append(nextButton);
+
+
 
     nextButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const selected = questionForm.elements.options.value
+
+        const selected = questionForm.elements.options.value;
+        if (selected !== null) {
+            userAnwers[current] = parseInt(selected);
+        }
+
         if (parseInt(selected) === q.answer) {
             score++;
         }
@@ -108,6 +129,10 @@ function showQuestions() {
             showQuestions();
         } else {
             quizContainer.innerHTML = `<p>Score: ${score}/${questions.length}</p>`;
+            const resetButton = document.createElement('a');
+            resetButton.href = '\index.html'
+            resetButton.textContent = 'Go Back To Start Page'
+            quizContainer.append(resetButton);
 
         }
     })
