@@ -117,6 +117,11 @@ function showQuestions() {
     nextButton.textContent = 'Next';
     nextButton.classList.add('btn');
 
+    nextButton.id = 'next-button'
+    questionForm.id = 'question-form';
+
+
+
     // Build question structure
     quizContainer.append(questionForm);
     questionForm.append(questionContainer);
@@ -155,6 +160,7 @@ function showQuestions() {
         });
 
         questionForm.append(backButton);
+        backButton.id = 'back-button'
     }
 
     questionForm.append(nextButton);
@@ -181,9 +187,10 @@ function showQuestions() {
             quizContainer.innerHTML = `<p>Score: ${score}/${questions.length}</p>`;
 
             const resetButton = document.createElement('a');
-            resetButton.href = 'index.html'; // Corrected path
+            resetButton.href = 'index.html';
             resetButton.textContent = 'Go Back To Start Page';
             resetButton.classList.add('btn');
+            resetButton.id = 'reset-button';
             quizContainer.append(resetButton);
         }
     });
