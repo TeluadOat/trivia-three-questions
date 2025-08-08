@@ -1,36 +1,3 @@
-
-// const questions = [
-//     {
-//         question: 'What does the term "CPU" stand for?',
-//         options: [
-//             'Central Processing Unit',
-//             'Computer Processing Utility',
-//             'Control Panel Unit',
-//             'Central Power Unit'
-//         ],
-//         answer: 0
-//     },
-//     {
-//         question: 'Which of the following is an example of a high-level programming language?',
-//         options: ['Machine Code', 'Assembly', 'Python', 'Binary'],
-//         answer: 2
-//     },
-//     {
-//         question: 'What is the primary function of an operating system?',
-//         options: [
-//             'Manage hardware and software resources',
-//             'Run antivirus programs',
-//             'Provide internet access',
-//             'Compile source code'
-//         ],
-//         answer: 0
-//     }
-// ];
-
-
-
-
-
 const questions = [];
 
 function getQuest(resolvedArray) {
@@ -85,18 +52,21 @@ const getQuestions = async () => {
 
 // DOM elements
 const startForm = document.querySelector('#selections');
+const container = document.querySelector('#container');
+const header = document.querySelector('header');
 const quizContainer = document.querySelector('#quiz-container');
-const easy = document.querySelector('#difficulty-level-easy'); // (Optional, not used)
+const easy = document.querySelector('#difficulty-level-easy'); // (not yet used)
 
 // Quiz state
 let current = 0;
 let score = 0;
 const userAnswers = new Array(questions.length).fill(null);
 
+
 // Start quiz on form submit
 startForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    quizContainer.innerHTML = `<p>Loading questions...</p>`
+    quizContainer.innerHTML = `<p>Loading questions...</p>`;
     await getQuestions();
     showQuestions();
 });
@@ -104,16 +74,20 @@ startForm.addEventListener('submit', async (e) => {
 function showQuestions() {
     quizContainer.style.fontSize = '1.5rem';
     quizContainer.innerHTML = '';
+    quizContainer.classList.remove('quiz-container');
 
+    //question position
     const q = questions[current];
 
     // Create form and layout
     const questionForm = document.createElement('form');
-    const questionContainer = document.createElement('fieldset');
-    const askedQuestion = document.createElement('legend');
+    const questionDisplay = document.createElement('p');
     const nextButton = document.createElement('button');
 
-    askedQuestion.textContent = `${current + 1}. ${q.quest}`;
+    questionDisplay.textContent = q.quest;
+    questionDisplay.id = 'questionBox';
+
+
     nextButton.textContent = 'Next';
     nextButton.classList.add('btn');
 
@@ -123,28 +97,41 @@ function showQuestions() {
 
 
     // Build question structure
-    quizContainer.append(questionForm);
-    questionForm.append(questionContainer);
-    questionContainer.append(askedQuestion);
+
+    // header.insertAdjacentElement("afterend", questionForm)
+    questionForm.append(questionDisplay);
 
     q.options.forEach((option, i) => {
-        const label = document.createElement('label');
-        const input = document.createElement('input');
-        const optionsText = document.createElement('span');
-
-        input.type = 'radio';
-        input.name = 'options';
-        input.value = i;
-        input.checked = userAnswers[current] === i;
-
+        const optionsText = document.createElement('button');
+        optionsText.classList.add('btn', 'options');
+        optionsText.dataset.value = i;
         optionsText.innerText = option;
+        optionsText.type = 'button';
 
-        label.classList.add('label-op');
-        label.append(input, optionsText);
-        questionContainer.append(label);
+        questionForm.append(optionsText);
+
     });
 
-    questionContainer.classList.add('flex-display');
+    if (userAnswers[current] !== null) {
+        const previousSelected = questionForm.querySelector(`.options[data-value="${userAnswers[current]}"]`);
+
+        if (previousSelected) {
+            previousSelected.classList.add('checked');
+        }
+    };
+
+    header.insertAdjacentElement('afterend', questionForm);
+
+    //listener to the answer options buttons
+    questionForm.addEventListener('click', (e) => {
+        if (e.target.classList.contains('options')) {
+            document.querySelectorAll('.options').forEach(btn =>
+                btn.classList.remove('checked'));
+            e.target.classList.add('checked');
+        }
+    })
+
+    questionForm.append(nextButton);
 
     // Back button (if not first question)
     if (current > 0) {
@@ -155,7 +142,8 @@ function showQuestions() {
         backButton.addEventListener('click', (e) => {
             e.preventDefault();
             current -= 1;
-            score -= questions[current + 1] && userAnswers[current + 1] === questions[current + 1].answer ? 1 : 0;
+            score -= userAnswers[current] === questions[current].answer ? 1 : 0;
+            questionForm.remove();
             showQuestions();
         });
 
@@ -163,40 +151,40 @@ function showQuestions() {
         backButton.id = 'back-button'
     }
 
-    questionForm.append(nextButton);
 
+
+    //listening to nextButtom
     nextButton.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const selected = questionForm.elements.options.value;
+        const selected = document.querySelector('.options.checked');
 
-        if (selected !== '') {
-            const selectedIndex = parseInt(selected);
-            userAnswers[current] = selectedIndex;
+        if (selected) {
+            userAnswers[current] = Number(selected.dataset.value);
 
-            if (selectedIndex === q.answer) {
+            if (Number(selected.dataset.value) === q.answer) {
                 score++;
             }
         }
-
+        console.log(userAnswers);
         current++;
 
         if (current < questions.length) {
+            questionForm.remove();
             showQuestions();
         } else {
-            quizContainer.innerHTML = `<p>Score: ${score}/${questions.length}</p>`;
+            questionForm.innerHTML = `<p id="result-para">Score: ${score}/${questions.length}</p>`;
 
             const resetButton = document.createElement('a');
-            resetButton.href = 'index.html';
+            resetButton.href = 'index2.html';
             resetButton.textContent = 'Go Back To Start Page';
             resetButton.classList.add('btn');
             resetButton.id = 'reset-button';
-            quizContainer.append(resetButton);
+            questionForm.append(resetButton);
         }
     });
+
+
+
 }
-
-
-
-
 
