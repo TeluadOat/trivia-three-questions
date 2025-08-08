@@ -5,42 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./basic-trivia.css">
-    <title>Trivia App - Know About Computer Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
 </head>
 
 <body>
-
-    <div id="container">
-        <header>
-            <h1>Sample Trivia Web App</h1>
-        </header>
-        <main id="quiz-container">
-            <p id="desc">Test your knowledge on Computer Programming</p>
-            <form id="selections" action="#">
-                <label for="category"> Select category<select name="category" id="category">
-                        <option value=""></option>
-                        <option value="javascript">JavaScript</option>
-                        <option value="python">Python</option>
-                        <option value="rust">Rust</option>
-                    </select></label>
-                <fieldset id="difficulty">
-                    <legend>Select Difficulty Level</legend>
-                    <label for="difficulty-level-easy"><span>Easy</span><input id="difficulty-level-easy"
-                            type="checkbox" checked></label>
-                    <label for="difficulty-level-intermediate"><span>Intermediate</span><input type="checkbox"></label>
-                    <label for="difficulty-level-hard"><span>Hard</span><input type="checkbox"></label>
-                </fieldset>
-                <button id="start-button" class="btn" name="submit">start</button>
-            </form>
-        </main>
-        <footer>
-            <span id="dev">TeluadOat</span>
-            <span></span>
-        </footer>
+    <div id="landing-page" class="main-cont">
+        <span>
+            <h1>Computer Science Trivia</h1>
+            <span id="rel-logo"><i class="fa-solid fa-code-branch"></i></span>
+        </span>
+        <p id="essence-info" class="para">Challenge your knowledge of programming languages and computer science
+            concepts!</p>
+        <a id="lp-btn" href="./index2.html" class="btn" type="button">Get Started</a>
     </div>
-
     <script src="./app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>
