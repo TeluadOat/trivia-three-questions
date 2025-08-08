@@ -72,7 +72,6 @@ startForm.addEventListener('submit', async (e) => {
 });
 
 function showQuestions() {
-    quizContainer.style.fontSize = '1.5rem';
     quizContainer.innerHTML = '';
     quizContainer.classList.remove('quiz-container');
 
