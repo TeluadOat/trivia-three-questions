@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./basic-trivia.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Trivia App - Know About Computer Science</title>
+</head>
+
+<body>
+
+    <div id="container">
+        <header>
+            <h1>Computer Science Trivia</h1>
+        </header>
+        <main id="quiz-container" class="quiz-container">
+            <form id="selections" action="#">
+                <select name="category" id="category" class="btn" disabled>
+                    <option value="">Select categoty</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="html" selected>HTML</option>
+                    <option value="python">Python</option>
+                    <option value="rust">Rust</option>
+                </select>
+
+                <select name="difficulty" id="dificulty" class="btn" disabled>
+                    <option value="">Select difficulty</option>
+                    <option value="easy" selected>Easy</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="hard">Hard</option>
+                </select>
+
+                <button id="start-button" class="btn" name="submit">start</button>
+            </form>
+        </main>
+        <footer hidden>
+            <span id="dev">TeluadOat</span>
+            <a id="git-social" href="https://github.com/TeluadOat" target="_blank"><i
+                    class="fa-brands fa-github"></i></a>
+        </footer>
+    </div>
+
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>
