@@ -1,12 +1,16 @@
 :root {
-    --main-color: bisque;
-    --main-color-hover: #c6b49c;
+    --main-color: hsl(240, 55%, 58%);
+    --main-color-hover: hsl(240, 55%, 54%);
+    --main-color-focus: hsl(240, 55%, 40%);
+    --white: #ffffff;
+    --white-hover: hsl(0, 0%, 95%);
+    --subtle-border: #b3a5a5;
 }
 
 *,
 ::before,
 ::after {
-    border: 0;
+    padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
@@ -20,47 +24,110 @@ html {
 body {
     height: 100%;
     width: 100vw;
-    border: 2px solid blue;
+}
+
+
+/*Landing Page*/
+.main-cont {
+    width: fit-content;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    padding: 9rem 4rem;
+    text-align: center;
+    font-size: 2em;
+    margin: auto;
+}
+
+#landing-page>span:first-of-type {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1em;
+}
+
+
+#rel-logo {
+    color: var(--main-color);
+    font-size: 4em;
+}
+
+#essence-info.para {
+    font-size: 2.5rem;
+    line-height: 1.5;
+}
+
+.btn {
+    font-size: 2rem;
+    background-color: var(--main-color);
+    padding: 2rem 2rem;
+    border-radius: 2px;
+    cursor: pointer;
+    color: var(--white);
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    background-color: var(--main-color-hover);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn:focus {
+    outline: 2px solid var(--main-color-focus);
+}
+
+#lp-btn {
+    margin-top: auto;
+    text-decoration: none;
 }
 
 #container {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    gap: 2em;
-    background-color: #f2f0ed;
-    border: 2px solid red;
+    min-height: 100%;
+    max-height: fit-content;
+    width: 60%;
+    min-width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: auto;
+    border: 5px solid var(--main-color);
+    border-radius: 10px;
 }
 
 header {
-    font-size: 15px;
-    grid-row: 1;
-    background-color: bisque;
+    color: var(--white, #ffffff);
+    background-color: var(--main-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2em;
-    height: 6em;
     width: 100%;
+    height: 10em;
+    line-height: 1.3;
+    padding: 1.5em;
+    font-size: 2em;
+    text-align: center;
 }
 
+/*
+Design for my github link
 #dev {
     font-size: 1.5em;
     font-weight: bold;
-}
+} */
 
 
-#quiz-container {
-    grid-row: 2;
-    padding: 2em 3rem;
+.quiz-container {
+    height: calc(100%- 25em);
+    padding: 2em 3em;
     font-size: 1em;
     display: flex;
     flex-direction: column;
     gap: 2em;
     width: 100%;
-    border: 2px solid green;
+    margin: auto 0;
+    border: 2px solid black;
 }
 
 input,
@@ -69,52 +136,19 @@ select {
     cursor: pointer;
 }
 
-#desc {
-    font-size: 2em;
-}
 
 #selections {
     display: flex;
     flex-direction: column;
     gap: 1.5em;
     font-size: 1.5em;
+    margin: auto 0;
 }
 
-label[for="category"]>#category {
-    display: block;
-    margin-top: 0.5em;
-    height: 1.5em;
-}
-
-input:hover,
-select:hover {
-    border: 1px solid bisque
-}
-
-fieldset#difficulty {
-    display: flex;
-    gap: 1em;
-    padding: 0.5em 0;
-    width: fit-content;
-}
-
-fieldset#difficulty>label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3em;
-}
-
-fieldset#difficulty>label>input {
-    accent-color: bisque;
-}
 
 form#selections>button {
-    display: inline-block;
     text-transform: uppercase;
-    width: auto;
-    padding: 0.5em;
-    border-radius: 4px;
-    align-self: flex-start;
+    border: 0;
 }
 
 footer {
@@ -124,71 +158,93 @@ footer {
     padding: 2em 3rem;
 }
 
+/* #git-social {
+    font-size: 1.7rem;
+    text-decoration: none;
+    color: white;
+    margin-left: 0.5em;
+} */
 
-/* styles for dynamically created elements*/
 
-.flex-display {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem 0.5rem;
-    grid-column: 1/span 2;
-}
 
-.label-op {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    margin-left: 1rem;
-}
 
-.btn {
-    background-color: bisque;
-    padding: 0.3rem 0.6rem;
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: rgb(198, 180, 156);
-    transition: background-color 0.2s ease-in-out;
-}
+/* for the dynamically created elements*/
 
 #question-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto;
+    width: 60em;
     height: 100%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     margin: 0 auto;
-    width: 30em;
+    padding: 2em 5em;
+    border: 2px solid green;
 }
 
-#question-form input[type="radio"] {
-    accent-color: #996521;
+#questionBox {
+    height: 13rem;
+    border: 1px solid #b3a5a5;
+    border-radius: 10px;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1.5rem;
 }
 
-#next-button {
-    grid-row: 2;
-    grid-column: 2;
-    max-width: max-content;
-    justify-self: flex-end;
+
+/* the question options*/
+.options {
+    background-color: var(--white);
+    color: black;
+    border-color: var(--subtle-border);
+    border-width: 1.5px;
+    font-size: 2rem;
 }
 
-#back-button {
-    grid-row: 2;
-    grid-column: 1;
-    max-width: max-content;
+.options:hover {
+    background-color: var(--white-hover);
+}
+
+.options.checked {
+    background-color: var(--main-color);
+    color: var(--white);
+}
+
+.options.checked:hover {
+    background-color: var(--main-color-hover);
+    color: var(--white);
+}
+
+#next-button {}
+
+#back-button {}
+
+#result-para {
+    text-align: center;
+    font-size: 4em;
+    margin-bottom: 0.5em;
 }
 
 #reset-button {
-    max-width: fit-content;
     text-decoration: none;
-    color: inherit;
+    text-align: center;
 }
 
+
 @media (max-width:768px) {
+    #container {
+        border: 0;
+        width: 100%;
+    }
 
     #question-form {
         width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    #questionBox {
+        height: 9em;
     }
 }
